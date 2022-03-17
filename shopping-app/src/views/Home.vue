@@ -27,7 +27,10 @@
                   >
                   <p>{{ item.description }}</p>
                   <v-card-actions class="justify-center"
-                    ><v-btn text color="deep-purple accent-4"
+                    ><v-btn
+                      text
+                      color="deep-purple accent-4"
+                      @click="addToCart(item)"
                       >Add to Cart</v-btn
                     ></v-card-actions
                   >
@@ -45,6 +48,7 @@
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
 import axios from "axios";
+
 export default {
   name: "Home",
   data: () => ({
@@ -62,6 +66,9 @@ export default {
     this.getAllProducts().then((res) => (this.products = res.data));
   },
   methods: {
+    addToCart(item) {
+      this.$store.dispatch("addToCart", item);
+    },
     getAllProducts() {
       return new Promise((resolve, reject) => {
         axios

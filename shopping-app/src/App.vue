@@ -10,7 +10,7 @@
   <v-app>
     <v-main>
       <navigation-bar />
-      <v-container>
+      <v-container fill-height>
         <router-view />
       </v-container>
     </v-main>
