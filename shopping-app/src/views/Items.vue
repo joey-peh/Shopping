@@ -4,7 +4,6 @@
       <v-data-table
         :items="products"
         :items-per-page="-1"
-        style="overflow-x: none; overflow-y: none"
         :hide-default-footer="true"
       >
         <template v-slot:top>

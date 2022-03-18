@@ -5,32 +5,44 @@
 
       <v-toolbar-title>Fake Store</v-toolbar-title>
       <v-spacer />
-      <v-btn icon>
-        <v-icon>mdi-cart</v-icon>
+      <v-btn icon :to="'/cart'">
+        <v-badge :content="$store.getters.cartCount">
+          <v-icon>mdi-cart</v-icon>
+        </v-badge>
       </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6"> Application </v-list-item-title>
+          <v-list-item-subtitle v-if="getCurrentUser.username != null">
+            Welcome {{ getCurrentUser.username }}
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
       <v-list nav dense>
         <v-list-item-group
           v-model="group"
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item :to="'/about'">
+          <v-list-item :to="'/'">
             <v-list-item-icon>
               <v-icon>mdi-information</v-icon>
             </v-list-item-icon>
             <v-list-item-title> About</v-list-item-title>
           </v-list-item>
 
-          <v-list-item :to="'/'">
+          <v-list-item :to="'/items'">
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title>Items</v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item :to="'/login'" v-if="getCurrentUser.username == null">
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
@@ -48,5 +60,17 @@ export default {
     drawer: false,
     group: null,
   }),
+  computed: {
+    getCartCount() {
+      let cartCount = this.$store.getters.cartCount;
+      // if (!cartCount) return 0;
+      return cartCount;
+    },
+    getCurrentUser() {
+      let user = this.$store.getters.currentUser;
+      console.log(user);
+      return user;
+    },
+  },
 };
 </script>
