@@ -9,7 +9,9 @@
         label="Password"
         type="password"
       ></v-text-field>
-      <v-btn @click="loginOrRegisterBtn">{{ loginOrRegister }}</v-btn>
+      <v-btn @click="loginOrRegisterBtn" :disabled="checkValid">{{
+        loginOrRegister
+      }}</v-btn>
       <v-btn v-if="!isSignIn" @click="isSignIn = true">Cancel</v-btn>
       <br />
       <span v-if="isSignIn"
@@ -84,11 +86,18 @@ export default {
           // this.saveFile();
         }
       }
+
+      this.resetFields();
     },
 
     addUserIntoJSON() {
       const fs = require("fs");
       fs.writeFileSync(userFile, this.userList);
+    },
+
+    resetFields() {
+      this.username = null;
+      this.password = null;
     },
   },
   computed: {
@@ -97,6 +106,9 @@ export default {
     },
     loginOrRegister() {
       return this.isSignIn ? "Login" : "Register";
+    },
+    checkValid() {
+      return !(this.username != null && this.password != null);
     },
   },
 };

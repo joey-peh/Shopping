@@ -1,14 +1,38 @@
 <template>
   <v-row>
     <v-col>
+      <v-snackbar
+        v-model="addedToCartAlert"
+        color="success"
+        style="font-weight: 500"
+      >
+        Added "{{ selectedProducts }}"
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="white"
+            text
+            v-bind="attrs"
+            @click="addedToCartAlert = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+      <div class="text-center" v-if="!products.length">
+        <v-progress-circular
+          :size="100"
+          indeterminate
+          color="primary"
+        ></v-progress-circular>
+      </div>
       <v-data-table
         :items="products"
         :items-per-page="-1"
         :hide-default-footer="true"
       >
-        <template v-slot:top>
+        <!-- <template v-slot:top>
           <v-text-field label="Search Product"></v-text-field>
-        </template>
+        </template> -->
         <template v-slot:body="{ items }">
           <v-row>
             <v-col cols="4" v-for="item in items" :key="item.title">
@@ -60,13 +84,20 @@ export default {
       { text: "Stocks", value: "rating.count" },
     ],
     products: [],
+    addedToCartAlert: false,
+    selectedProducts: "",
   }),
   created() {
     this.getAllProducts().then((res) => (this.products = res.data));
   },
   methods: {
     addToCart(item) {
+      this.selectedProducts = item.title;
       this.$store.dispatch("addToCart", item);
+      this.addedToCartAlert = true;
+      setTimeout(() => {
+        this.addedToCartAlert = false;
+      }, 3000);
     },
     getAllProducts() {
       return new Promise((resolve, reject) => {
