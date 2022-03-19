@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col>
-      <v-data-table :items="getAllCartItems" :headers="headers"></v-data-table>
+      <v-data-table :items="getAllCartItems" :headers="headers"> </v-data-table>
     </v-col>
   </v-row>
 </template>
@@ -12,7 +12,6 @@ export default {
       { text: "Title", value: "title" },
       { text: "Price", value: "price" },
       { text: "Quantity", value: "qty" },
-      { text: "Action" },
     ],
   }),
   computed: {
