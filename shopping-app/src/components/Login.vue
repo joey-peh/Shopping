@@ -9,15 +9,24 @@
         label="Password"
         type="password"
       ></v-text-field>
-      <v-btn @click="loginOrRegisterBtn" :disabled="checkValid">{{
-        loginOrRegister
-      }}</v-btn>
-      <v-btn v-if="!isSignIn" @click="isSignIn = true">Cancel</v-btn>
+      <v-btn
+        @click="loginOrRegisterBtn"
+        :disabled="checkValid"
+        text
+        color="deep-purple accent-4"
+        >{{ loginOrRegister }}</v-btn
+      >
+      <v-btn
+        v-if="!isSignIn"
+        @click="isSignIn = true"
+        text
+        color="deep-purple accent-4"
+        >Cancel</v-btn
+      >
       <br />
-      <span v-if="isSignIn"
-        >No account?
+      <span v-if="isSignIn">
         <v-btn text @click="isSignIn = false"
-          >Register an account here!</v-btn
+          >No account? Register an account here!</v-btn
         ></span
       >
     </v-card-text>

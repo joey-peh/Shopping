@@ -1,20 +1,20 @@
 <template>
-  <v-row>
-    <v-col class="text-align-center">
-      <div class="text-subtitle-1">This application is not completed</div>
-      <center>
-        <v-img max-width="500" src="@/assets/work-in-progress.png"></v-img>
-      </center>
-      <br />
-      <h1>About</h1>
-      <p>
-        A shopping web application written in VueJS using
-        <a href="https://fakestoreapi.com">Fake Store API</a>
-      </p>
-      <div class="text-subtitle-2">
-        Source code can be found
-        <a href="https://github.com/joey-peh/Shopping">here</a>
-      </div>
-    </v-col>
-  </v-row>
+  <v-container>
+    <v-card>
+      <v-card-title>About Me</v-card-title>
+      <v-card-subtitle>
+        Hello! My name is Joey. I am still in the midst of building this
+        application! I hope that this small project will give an idea of what I
+        can do!<br />
+        This is a shopping web application written in VueJS using
+        <a href="https://fakestoreapi.com">Fake Store API</a>. You can view the
+        codes <a href="https://github.com/joey-peh/Shopping">here</a>
+      </v-card-subtitle>
+      <v-card-text>
+        <center>
+          <v-img max-width="500" src="@/assets/work-in-progress.png"></v-img>
+        </center>
+      </v-card-text>
+    </v-card>
+  </v-container>
 </template>

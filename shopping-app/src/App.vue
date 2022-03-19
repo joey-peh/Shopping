@@ -8,8 +8,8 @@
   </div> -->
 
   <v-app>
+    <navigation-bar />
     <v-main>
-      <navigation-bar />
       <v-container fill-height fluid>
         <router-view />
       </v-container>

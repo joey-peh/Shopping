@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar color="deep-purple  accent-4" dark>
+    <v-app-bar color="deep-purple  accent-4" dark app>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Fake Store </v-toolbar-title>
@@ -12,13 +12,18 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-navigation-drawer v-model="drawer" absolute temporary app>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h6"> Application</v-list-item-title>
-          <v-list-item-subtitle v-if="getCurrentUser.username != null">
+          <v-list-item-title class="text-h6"
+            >Hello
+            {{
+              getCurrentUser.username ? getCurrentUser.username : "Stranger"
+            }}!</v-list-item-title
+          >
+          <!-- <v-list-item-subtitle v-if="getCurrentUser.username != null">
             Welcome {{ getCurrentUser.username }}
-          </v-list-item-subtitle>
+          </v-list-item-subtitle> -->
         </v-list-item-content>
       </v-list-item>
 
@@ -73,7 +78,6 @@ export default {
     },
     getCurrentUser() {
       let user = this.$store.getters.currentUser;
-      console.log(user);
       return user;
     },
   },

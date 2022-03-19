@@ -1,0 +1,25 @@
+[debug] [2022-03-19T15:08:29.112Z] ----------------------------------------------------------------------
+[debug] [2022-03-19T15:08:29.114Z] Command:       /usr/local/bin/firebase /Users/joeypeh/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase init
+[debug] [2022-03-19T15:08:29.114Z] CLI Version:   10.2.2
+[debug] [2022-03-19T15:08:29.114Z] Platform:      darwin
+[debug] [2022-03-19T15:08:29.114Z] Node Version:  v12.18.1
+[debug] [2022-03-19T15:08:29.116Z] Time:          Sat Mar 19 2022 23:08:29 GMT+0800 (Singapore Standard Time)
+[debug] [2022-03-19T15:08:29.116Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-19T15:08:29.167Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-19T15:08:29.168Z] > authorizing via signed-in user (phchuerjoey@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/joeypeh/git/Shopping/shopping-app
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
