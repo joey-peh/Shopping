@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         _cartItems: [],
-        _user: []
+        _user: [],
+        _userList: [{ username: "user1" }, { username: "user2" }]
     },
     mutations: {
         UPDATE_CART(state, payload) {
@@ -14,12 +15,32 @@ export default new Vuex.Store({
         },
         UPDATE_USER(state, payload) {
             state._user = payload
+        },
+        UPDATE_USERLIST(state, payload) {
+            state._userList = payload;
         }
     },
     actions: {
+        registerUser(context, payload) {
+            const user = context.state._userList;
+            user.push(payload);
+            context.commit('UPDATE_USERLIST', user);
+        },
         addToCart(context, payload) {
             const cart = context.state._cartItems;
-            cart.push(payload);
+            var found = false;
+            for (var i = 0; i < cart.length; i++) {
+                if (cart[i].id === payload.id) {
+                    let count = cart[i].qty += 1;
+                    payload.qty = count;
+                    Vue.set(cart, i, payload);
+                    found = true;
+                }
+            }
+            if (!found) {
+                payload.qty = 1;
+                cart.push(payload);
+            }
             console.log(cart);
             context.commit('UPDATE_CART', cart);
         },
@@ -28,17 +49,14 @@ export default new Vuex.Store({
         }
     },
     getters: {
-        cartCount: function (state) {
-            console.log("count: " + state._cartItems.length);
-            return state._cartItems.length;
-        },
         cartItems: function (state) {
-            let data = state._cartItems;
-            console.log(data);
-            return data;
+            return state._cartItems;
         },
         currentUser: function (state) {
             return state._user;
+        },
+        userList: function (state) {
+            return state._userList;
         }
     },
     modules: {

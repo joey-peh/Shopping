@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-app-bar color="deep-purple  accent-4" dark elevate-on-scroll>
+    <v-app-bar color="deep-purple  accent-4" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Fake Store</v-toolbar-title>
+      <v-toolbar-title>Fake Store </v-toolbar-title>
       <v-spacer />
       <v-btn icon :to="'/cart'">
-        <v-badge :content="$store.getters.cartCount">
+        <v-badge :content="getCartCount" :value="getCartCount" overlap>
           <v-icon>mdi-cart</v-icon>
         </v-badge>
       </v-btn>
@@ -15,7 +15,7 @@
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h6"> Application </v-list-item-title>
+          <v-list-item-title class="text-h6"> Application</v-list-item-title>
           <v-list-item-subtitle v-if="getCurrentUser.username != null">
             Welcome {{ getCurrentUser.username }}
           </v-list-item-subtitle>
@@ -60,11 +60,18 @@ export default {
     drawer: false,
     group: null,
   }),
+  watch: {
+    getCartCount(newVal) {
+      console.log("changed: " + newVal);
+    },
+  },
   computed: {
     getCartCount() {
-      let cartCount = this.$store.getters.cartCount;
-      // if (!cartCount) return 0;
-      return cartCount;
+      let sum = 0;
+      this.$store.getters.cartItems.forEach((element) => {
+        sum += element.qty;
+      });
+      return sum;
     },
     getCurrentUser() {
       let user = this.$store.getters.currentUser;

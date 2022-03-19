@@ -1,12 +1,17 @@
 <template>
   <v-row>
-    <v-col>
+    <v-col class="text-align-center">
+      <center>
+        <v-img max-width="500" src="@/assets/work-in-progress.png"></v-img>
+      </center>
+      <br />
       <h1>About</h1>
       <p>
-        A shopping web application written in VueJS based on
+        A shopping web application written in VueJS using
         <a href="https://fakestoreapi.com">Fake Store API</a>
       </p>
-      <h3>--Work in progress--</h3>
+      <div class="text-subtitle-1">This application is not completed</div>
+      <div class="text-subtitle-2">Source code can be found here</div>
     </v-col>
   </v-row>
 </template>

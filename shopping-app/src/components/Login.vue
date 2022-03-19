@@ -29,13 +29,22 @@ export default {
     isSignIn: true,
     username: null,
     password: null,
-    userList: [],
     errorMsg: null,
   }),
   created() {
-    this.userList = userFile;
+    // this.userList = userFile;
   },
   methods: {
+    // saveFile() {
+    //   const data = JSON.stringify(this.arr);
+    //   const fs = require("fs");
+    //   try {
+    //     fs.writeFileSync("myfile.txt", data, "utf-8");
+    //   } catch (e) {
+    //     console.log(e);
+    //     alert("Failed to save the file !");
+    //   }
+    // },
     retrieveUser() {
       var user = [];
       for (var i = 0; i < this.userList.length; i++) {
@@ -52,6 +61,8 @@ export default {
       this.errorMsg = null;
       let existingUser = this.retrieveUser();
       const isUserExist = existingUser.username != null;
+
+      //log in page
       if (this.isSignIn) {
         if (isUserExist > 0) {
           this.$store.dispatch("setCurrentUser", existingUser);
@@ -59,10 +70,18 @@ export default {
         } else {
           this.errorMsg = "No such user exist! Register an account?";
         }
-      } else {
+      }
+
+      //registration page
+      else {
         if (isUserExist) this.errorMsg = "Username exist!";
         else {
-          this.userList.push({ username: this.username });
+          let newUser = { username: this.username };
+          this.userList.push(newUser);
+          this.$store.dispatch("registerUser", newUser);
+          this.$store.dispatch("setCurrentUser", newUser);
+          this.$router.push("Items");
+          // this.saveFile();
         }
       }
     },
@@ -73,6 +92,9 @@ export default {
     },
   },
   computed: {
+    userList() {
+      return this.$store.getters.userList;
+    },
     loginOrRegister() {
       return this.isSignIn ? "Login" : "Register";
     },

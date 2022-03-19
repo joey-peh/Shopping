@@ -1,15 +1,25 @@
 <template>
   <v-row>
     <v-col>
-      <v-data-table></v-data-table>
+      <v-data-table :items="getAllCartItems" :headers="headers"></v-data-table>
     </v-col>
   </v-row>
 </template>
 <script>
 export default {
+  data: () => ({
+    headers: [
+      { text: "Title", value: "title" },
+      { text: "Price", value: "price" },
+      { text: "Quantity", value: "qty" },
+      { text: "Action" },
+    ],
+  }),
   computed: {
     getAllCartItems() {
-      return this.$store.getters.cartItems;
+      let cartItems = this.$store.getters.cartItems;
+      console.log(cartItems);
+      return cartItems;
     },
   },
 };
